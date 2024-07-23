@@ -20928,6 +20928,7 @@ MonoBehaviour:
   spawnWaitTime: 0.1
   minSpawn: {fileID: 1832722479}
   maxSpawn: {fileID: 979945218}
+  checkPerFream: 10
 --- !u!4 &517513683
 Transform:
   m_ObjectHideFlags: 0

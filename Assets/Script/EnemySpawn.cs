@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
     public GameObject enemyToSpawn;
     public float spawnWaitTime;
     private float spawnCountDown;
     public Transform minSpawn;
     public Transform maxSpawn;
     private Transform target;
+    public int checkPerFream;
+    private int enemyToCheck;
+    private float despawnDistance;
     // Start is called before the first frame update
     void Start()
     {
         spawnCountDown = spawnWaitTime;
         target = PlayerHealthController.instance.transform;
+        despawnDistance = Vector3.Distance(transform.position, maxSpawn.position) + 4f;
     }
 
     // Update is called once per frame
@@ -26,9 +31,43 @@ public class EnemySpawn : MonoBehaviour
         if (spawnCountDown < 0)
         {
             spawnCountDown = spawnWaitTime;
-            Instantiate(enemyToSpawn, SelectSpawnPosition(), transform.rotation);
+            GameObject newEnemy = Instantiate(enemyToSpawn, SelectSpawnPosition(), transform.rotation);
+
+            spawnedEnemies.Add(newEnemy);
         }
         transform.position = target.position;
+
+        int checkTarget = enemyToCheck + checkPerFream;
+
+        while (enemyToCheck < checkTarget)
+        {
+            if (enemyToCheck < spawnedEnemies.Count)
+            {
+                if (spawnedEnemies[enemyToCheck] != null)
+                {
+                    if(Vector3.Distance(transform.position, spawnedEnemies[enemyToCheck].transform.position) > despawnDistance)
+                    {
+                        Destroy(spawnedEnemies[enemyToCheck]);
+                        spawnedEnemies.RemoveAt(enemyToCheck);
+                        checkTarget--;
+                    }
+                    else
+                    {
+                        enemyToCheck++;
+                    }
+                }
+                else
+                {
+                    spawnedEnemies.RemoveAt(enemyToCheck);
+                    checkTarget--;
+                }
+            }
+            else
+            {
+                enemyToCheck = 0;
+                checkTarget = 0;
+            }
+        }
     }
     private Vector3 SelectSpawnPosition()
     {
