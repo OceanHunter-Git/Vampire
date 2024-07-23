@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public float damage;
     public float hitWaitTime;
     private float hitCountdown;
+    private float health = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +34,15 @@ public class EnemyController : MonoBehaviour
             PlayerHealthController.instance.TakeDamage(damage);
             hitCountdown = hitWaitTime;
         }    
+    }
+
+    public void TakeDamage(float damgeaToTake)
+    {
+        health -= damgeaToTake;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
