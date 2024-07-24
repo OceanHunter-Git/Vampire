@@ -9,7 +9,7 @@ public class DamageNumber : MonoBehaviour
     public float lifetime;
     private float lifetimeCounter;
 
-
+    public float floatSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +24,9 @@ public class DamageNumber : MonoBehaviour
             lifetimeCounter -= Time.deltaTime;
             if (lifetimeCounter <= 0)
             {
-                Destroy(gameObject);
+                DamageNumberController.instance.PlaceInNumbersPool(this);
             }
+            transform.position += Vector3.up * floatSpeed * Time.deltaTime;
         }
             
     }
