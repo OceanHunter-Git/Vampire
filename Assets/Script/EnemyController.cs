@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public float hitWaitTime;
     private float hitCountdown;
     private float health = 5f;
+    private float knockDownTime = .5f;
+    private float knockDownCounter;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,19 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (knockDownCounter > 0)
+        {
+            knockDownCounter -= Time.deltaTime;
+            if (moveSpeed > 0)
+            {
+                moveSpeed = -moveSpeed * 2f;
+            }
+            if (knockDownCounter <= 0)
+            {
+                knockDownCounter = 0;
+                moveSpeed = MathF.Abs(moveSpeed * .5f);
+            }
+        }
         enemyRb.velocity = (target.position - transform.position).normalized * moveSpeed;    
         if (hitCountdown > 0)
         {
@@ -36,13 +52,21 @@ public class EnemyController : MonoBehaviour
         }    
     }
 
-    public void TakeDamage(float damgeaToTake)
+    public void TakeDamage(float damageToTake)
     {
-        health -= damgeaToTake;
+        health -= damageToTake;
 
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+    public void TakeDamage(float damageToTake, bool isKnockBack)
+    {
+        TakeDamage(damageToTake);
+
+        if (isKnockBack) {
+            knockDownCounter = knockDownTime;
         }
     }
 }

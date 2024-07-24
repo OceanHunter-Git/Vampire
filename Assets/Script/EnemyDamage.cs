@@ -8,6 +8,8 @@ public class EnemyDamage : MonoBehaviour
     public float damageAmount;
     public float growthSpeed;
     private Vector3 targetSize;
+    public bool isKnockDown;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,7 @@ public class EnemyDamage : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyController>().TakeDamage(damageAmount);
+            collision.GetComponent<EnemyController>().TakeDamage(damageAmount, isKnockDown);
         }
     }
 }

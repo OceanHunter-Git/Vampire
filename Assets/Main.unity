@@ -25596,8 +25596,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 3
-  damageAmount: 5
+  damageAmount: 2
   growthSpeed: 5
+  isKnockDown: 1
 --- !u!58 &273948211
 CircleCollider2D:
   m_ObjectHideFlags: 0
