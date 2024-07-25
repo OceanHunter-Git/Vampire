@@ -26160,6 +26160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpExp: {fileID: 8985255643388978030, guid: 90a1ceb56f144d849a41ce79a0fdcf76, type: 3}
   currentExperience: 0
+  currentLevel: 1
+  levelCount: 100
+  level: 000000000300000005000000080000000d000000
 --- !u!4 &1191024927
 Transform:
   m_ObjectHideFlags: 0
