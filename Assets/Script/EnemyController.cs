@@ -11,9 +11,10 @@ public class EnemyController : MonoBehaviour
     public float damage;
     public float hitWaitTime;
     private float hitCountdown;
-    private float health = 5f;
+    public float health;
     private float knockDownTime = .5f;
     private float knockDownCounter;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -71,3 +72,5 @@ public class EnemyController : MonoBehaviour
         }
     }
 }
+
+

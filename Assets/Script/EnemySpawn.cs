@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     private List<GameObject> spawnedEnemies = new List<GameObject>();
-    public GameObject enemyToSpawn;
     public float spawnWaitTime;
     private float spawnCountDown;
     public Transform minSpawn;
@@ -15,26 +14,49 @@ public class EnemySpawn : MonoBehaviour
     public int checkPerFream;
     private int enemyToCheck;
     private float despawnDistance;
+
+    public List<waveInfo> waves;
+    private int currentWave;
+    private float waveCounter;
     // Start is called before the first frame update
     void Start()
     {
-        spawnCountDown = spawnWaitTime;
+        
         target = PlayerHealthController.instance.transform;
         despawnDistance = Vector3.Distance(transform.position, maxSpawn.position) + 4f;
+        currentWave = -1;
+        ToNextWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        spawnCountDown -= Time.deltaTime;
         
-        if (spawnCountDown < 0)
+        if (PlayerHealthController.instance.gameObject.activeSelf)
         {
-            spawnCountDown = spawnWaitTime;
-            GameObject newEnemy = Instantiate(enemyToSpawn, SelectSpawnPosition(), transform.rotation);
+            if (currentWave < waves.Count)
+            {
+                waveCounter -= Time.deltaTime;
 
-            spawnedEnemies.Add(newEnemy);
+                if (waveCounter <= 0)
+                {
+                    ToNextWave();
+                }
+
+                spawnCountDown -= Time.deltaTime;
+
+                if (spawnCountDown <= 0)
+                {
+
+                    spawnCountDown = spawnWaitTime;
+                    GameObject newEnemy = Instantiate(waves[currentWave].enemyToSpawn, SelectSpawnPosition(), Quaternion.identity);
+
+                    spawnedEnemies.Add(newEnemy);
+                }
+
+            }
         }
+
         transform.position = target.position;
 
         int checkTarget = enemyToCheck + checkPerFream;
@@ -102,4 +124,23 @@ public class EnemySpawn : MonoBehaviour
         }
         return spawnPoint;
     }
+    private void ToNextWave()
+    {
+        currentWave++;
+
+        if (currentWave == waves.Count)
+        {
+            currentWave = waves.Count - 1;
+        }
+        waveCounter = waves[currentWave].waveLength;
+        spawnWaitTime = waves[currentWave].timeBetweenWave;
+    }
+}
+
+[System.Serializable]
+public class waveInfo
+{
+    public GameObject enemyToSpawn;
+    public float waveLength;
+    public float timeBetweenWave;
 }
