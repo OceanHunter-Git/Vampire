@@ -199,6 +199,7 @@ MonoBehaviour:
   damage: 5
   hitWaitTime: 0.8
   health: 7.5
+  expValue: 2
 --- !u!114 &7958151947999125396
 MonoBehaviour:
   m_ObjectHideFlags: 0

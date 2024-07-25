@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     public float health;
     private float knockDownTime = .5f;
     private float knockDownCounter;
-    
+    public int expValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,8 +60,10 @@ public class EnemyController : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            ExperienceLevelSystem.instance.SpawnExp(transform.position, expValue);
         }
         DamageNumberController.instance.SpawnDamage(damageToTake, transform.position);
+        
     }
     public void TakeDamage(float damageToTake, bool isKnockBack)
     {

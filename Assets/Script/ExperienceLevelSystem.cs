@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExperienceLevelSystem : MonoBehaviour
 {
     public static ExperienceLevelSystem instance;
-
+    public ExpPickUp pickUpExp;
     private void Awake()
     {
         instance = this;
@@ -27,5 +27,10 @@ public class ExperienceLevelSystem : MonoBehaviour
     public void GetExp(int experienceToGet)
     {
         currentExperience += experienceToGet;
+    }
+
+    public void SpawnExp (Vector3 Location, int expAmount)
+    {
+        Instantiate(pickUpExp, Location, Quaternion.identity).expValue = expAmount;
     }
 }
