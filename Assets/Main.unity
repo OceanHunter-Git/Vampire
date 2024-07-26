@@ -20594,7 +20594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.73760986, y: -66.574585}
+  m_AnchoredPosition: {x: 0.7375488, y: -66.574585}
   m_SizeDelta: {x: -191.0681, y: 29.0923}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230338549
@@ -26151,10 +26151,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3053817269c43248a805a152249921b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats:
+  - speed: 1
+    damage: 5
+    range: 1
+    timeBetweenSpawn: 8
+    amount: 1
+    duration: 7
+  - speed: 2
+    damage: 5
+    range: 2
+    timeBetweenSpawn: 8
+    amount: 1
+    duration: 7
+  - speed: 3
+    damage: 5
+    range: 3
+    timeBetweenSpawn: 8
+    amount: 1
+    duration: 7
+  weaponLevel: 0
+  statsUpdated: 0
+  enmeyDamage: {fileID: 273948210}
   holder: {fileID: 1542636228}
   fireballToSpawn: {fileID: 1563509375}
   rotationSpeed: 180
-  spawnWaitTime: 4
 --- !u!1 &588690484
 GameObject:
   m_ObjectHideFlags: 0
@@ -26769,6 +26790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3c8f9ead73c3c479d29f474adecdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeWeapon: {fileID: 588615477}
   moveSpeed: 2
   anim: {fileID: 1547649238}
   pickUpRange: 2

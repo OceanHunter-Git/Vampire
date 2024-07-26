@@ -2,18 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinWeapon : MonoBehaviour
+public class SpinWeapon : Weapon
 {
+    public EnemyDamage enmeyDamage;
     public Transform holder , fireballToSpawn;
     public float rotationSpeed;
-    public float spawnWaitTime;
+    private float spawnWaitTime;
     private float spawnCountDown;
     // Start is called before the first frame update
     void Start()
     {
-        spawnCountDown = spawnWaitTime;    
+        SetStats();    
     }
 
+    void SetStats()
+    {
+        rotationSpeed *= stats[weaponLevel].speed;
+
+        transform.localScale = Vector3.one * stats[weaponLevel].range;
+
+        spawnWaitTime = stats[weaponLevel].timeBetweenSpawn;
+
+        enmeyDamage.damageAmount = stats[weaponLevel].damage;
+
+        enmeyDamage.lifetime = stats[weaponLevel].duration;
+
+        spawnCountDown = 0;
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +41,11 @@ public class SpinWeapon : MonoBehaviour
             spawnCountDown = spawnWaitTime;
 
             Instantiate(fireballToSpawn, fireballToSpawn.position, fireballToSpawn.rotation, holder).gameObject.SetActive(true);
+        }
+        if (statsUpdated)
+        {
+            statsUpdated = false;
+            SetStats();
         }
     }
 }

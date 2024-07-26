@@ -54,5 +54,7 @@ public class ExperienceLevelSystem : MonoBehaviour
         {
             currentLevel--;
         }
+
+        PlayerController.instance.activeWeapon.LevelUp();
     }
 }

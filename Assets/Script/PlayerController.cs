@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public Weapon activeWeapon;
     public float moveSpeed;
     public Animator anim;
     public float pickUpRange;
