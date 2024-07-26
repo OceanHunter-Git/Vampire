@@ -12,12 +12,12 @@ public class SpinWeapon : Weapon
     // Start is called before the first frame update
     void Start()
     {
-        SetStats();    
+        SetStats();
     }
 
     void SetStats()
     {
-        rotationSpeed *= stats[weaponLevel].speed;
+
 
         transform.localScale = Vector3.one * stats[weaponLevel].range;
 
@@ -33,7 +33,7 @@ public class SpinWeapon : Weapon
     // Update is called once per frame
     void Update()
     {
-        holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + rotationSpeed * Time.deltaTime);
+        holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + rotationSpeed * Time.deltaTime * stats[weaponLevel].speed);
         spawnCountDown -= Time.deltaTime;
 
         if (spawnCountDown < 0)
