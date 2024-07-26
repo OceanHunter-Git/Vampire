@@ -27,15 +27,17 @@ public class ExperienceLevelSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (currentExperience >= level[currentLevel])
-        {
-            LevelUp();
-        }    
+   
     }
 
     public void GetExp(int experienceToGet)
     {
         currentExperience += experienceToGet;
+        while (currentExperience >= level[currentLevel])
+        {
+            LevelUp();
+        }
+        UIController.instance.UpdateExp(currentExperience, level[currentLevel], currentLevel);
     }
 
     public void SpawnExp (Vector3 Location, int expAmount)
