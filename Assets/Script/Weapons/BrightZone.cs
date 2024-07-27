@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinWeapon : Weapon
+public class BrightZone : Weapon
 {
     public EnemyDamage enmeyDamage;
-    public Transform holder , fireballToSpawn;
-    public float rotationSpeed;
+
+
     private float spawnWaitTime;
     private float spawnCountDown;
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class SpinWeapon : Weapon
 
     void SetStats()
     {
-
+        enmeyDamage.timeBetweenDamage = stats[weaponLevel].speed;
 
         transform.localScale = Vector3.one * stats[weaponLevel].range;
 
@@ -30,27 +30,22 @@ public class SpinWeapon : Weapon
         spawnCountDown = 0;
 
     }
-    // Update is called once per frame
-    void Update()
-    {
-        holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + rotationSpeed * Time.deltaTime * stats[weaponLevel].speed);
-        spawnCountDown -= Time.deltaTime;
 
-        if (spawnCountDown < 0)
+    private void Update()
+    {
+        spawnCountDown -= Time.deltaTime;
+        if (spawnCountDown <= 0)
         {
             spawnCountDown = spawnWaitTime;
 
-            for (int i = 0; i < stats[weaponLevel].amount; i++)
-            {
-                float rot = (360 / stats[weaponLevel].amount) * i;
-                Instantiate(fireballToSpawn, fireballToSpawn.position, Quaternion.Euler(0f, 0f, rot), holder).gameObject.SetActive(true);
-            }
-            
+            Instantiate(enmeyDamage, enmeyDamage.transform.position, Quaternion.identity, transform).gameObject.SetActive(true);
         }
+
         if (statsUpdated)
         {
             statsUpdated = false;
             SetStats();
         }
     }
+
 }
