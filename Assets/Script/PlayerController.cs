@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
     }
+
+    public int maxWeapons;
     public List<Weapon> unassignedWeapons, assignedWeapons;
+    [HideInInspector]
+    public List<Weapon> fullyLevelWeapons = new List<Weapon>();
     //public Weapon activeWeapon;
     public float moveSpeed;
     public Animator anim;

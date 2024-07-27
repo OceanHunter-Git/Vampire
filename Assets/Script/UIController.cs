@@ -35,4 +35,10 @@ public class UIController : MonoBehaviour
 
         expText.text = "Level: " + level.ToString();
     }
+
+    public void SkipUpgrade()
+    {
+        UIController.instance.levelUpPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
 }
