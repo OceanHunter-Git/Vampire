@@ -10,15 +10,15 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
     }
-
-    public Weapon activeWeapon;
+    public List<Weapon> unassignedWeapons, assignedWeapons;
+    //public Weapon activeWeapon;
     public float moveSpeed;
     public Animator anim;
     public float pickUpRange;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AddWeapon(Random.Range(0, unassignedWeapons.Count));   
     }
 
     // Update is called once per frame
@@ -37,5 +37,21 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isMoving", false);
         }
+    }
+
+    public void AddWeapon(int weaponNumber)
+    {
+        if (weaponNumber < unassignedWeapons.Count)
+        {
+            assignedWeapons.Add(unassignedWeapons[weaponNumber]);
+            unassignedWeapons[weaponNumber].gameObject.SetActive(true);
+            unassignedWeapons.RemoveAt(weaponNumber);
+        }
+    }
+    public void AddWeapon(Weapon weapponToAdd)
+    {
+        assignedWeapons.Add(weapponToAdd);
+        weapponToAdd.gameObject.SetActive(true);
+        unassignedWeapons.Remove(weapponToAdd);
     }
 }
