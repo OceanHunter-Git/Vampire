@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5271764359212218253}
   - component: {fileID: 6464072036730249763}
   - component: {fileID: 7958151947999125396}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy - Blue Wolf
   m_TagString: Enemy
   m_Icon: {fileID: 0}

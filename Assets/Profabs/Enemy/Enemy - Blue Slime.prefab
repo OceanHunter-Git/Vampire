@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3632283187357760082}
   - component: {fileID: 260566469751455408}
   - component: {fileID: 3189262855666856411}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy - Blue Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}

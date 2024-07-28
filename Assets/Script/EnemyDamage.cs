@@ -10,9 +10,12 @@ public class EnemyDamage : MonoBehaviour
     private Vector3 targetSize;
     public bool isKnockDown;
     public bool destroyParent;
+
     public bool damageOverTime;
     public float timeBetweenDamage;
     private float damageCountDown;
+
+    public bool destoryOnImpact;
 
     private List<EnemyController> enemiesInRange = new List<EnemyController>();
     // Start is called before the first frame update
@@ -69,6 +72,10 @@ public class EnemyDamage : MonoBehaviour
             if (collision.tag == "Enemy")
             {
                 collision.GetComponent<EnemyController>().TakeDamage(damageAmount, isKnockDown);
+                if (destoryOnImpact)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         else
