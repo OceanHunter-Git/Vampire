@@ -17,6 +17,8 @@ public class EnemyDamage : MonoBehaviour
 
     public bool destoryOnImpact;
 
+
+
     private List<EnemyController> enemiesInRange = new List<EnemyController>();
     // Start is called before the first frame update
     void Start()

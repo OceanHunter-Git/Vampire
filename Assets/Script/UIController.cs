@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     public LevelUpButton[] levelUpButtons;
     public Slider expSlider;
     public TMP_Text expText;
+    public TMP_Text coinText;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,11 @@ public class UIController : MonoBehaviour
         expSlider.value = currentExp;
 
         expText.text = "Level: " + level.ToString();
+    }
+
+    public void UpdateCoin()
+    {
+        coinText.text = "Coins:" + CoinController.instance.coinCounter;
     }
 
     public void SkipUpgrade()

@@ -15,6 +15,9 @@ public class EnemyController : MonoBehaviour
     private float knockDownTime = .5f;
     private float knockDownCounter;
     public int expValue;
+
+    public int coinValue;
+    public float dropCoinRate;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,23 +28,32 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (knockDownCounter > 0)
+        if (PlayerController.instance.gameObject.activeSelf)
         {
-            knockDownCounter -= Time.deltaTime;
-            if (moveSpeed > 0)
+
+
+            if (knockDownCounter > 0)
             {
-                moveSpeed = -moveSpeed * 2f;
+                knockDownCounter -= Time.deltaTime;
+                if (moveSpeed > 0)
+                {
+                    moveSpeed = -moveSpeed * 2f;
+                }
+                if (knockDownCounter <= 0)
+                {
+                    knockDownCounter = 0;
+                    moveSpeed = MathF.Abs(moveSpeed * .5f);
+                }
             }
-            if (knockDownCounter <= 0)
+            enemyRb.velocity = (target.position - transform.position).normalized * moveSpeed;
+            if (hitCountdown > 0)
             {
-                knockDownCounter = 0;
-                moveSpeed = MathF.Abs(moveSpeed * .5f);
+                hitCountdown -= Time.deltaTime;
             }
         }
-        enemyRb.velocity = (target.position - transform.position).normalized * moveSpeed;    
-        if (hitCountdown > 0)
+        else
         {
-            hitCountdown -= Time.deltaTime;
+            enemyRb.velocity = Vector2.zero;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -61,8 +73,15 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             ExperienceLevelSystem.instance.SpawnExp(transform.position, expValue);
+
+            if (UnityEngine.Random.Range(0f, 1f) < dropCoinRate)
+            {
+                CoinController.instance.SpawnCoin(transform.position, coinValue);
+
+            }
         }
         DamageNumberController.instance.SpawnDamage(damageToTake, transform.position);
+        
         
     }
     public void TakeDamage(float damageToTake, bool isKnockBack)

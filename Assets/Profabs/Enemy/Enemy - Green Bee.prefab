@@ -116,6 +116,8 @@ MonoBehaviour:
   hitWaitTime: 1
   health: 5
   expValue: 1
+  coinValue: 1
+  dropCoinRate: 0.5
 --- !u!114 &3174018146626416218
 MonoBehaviour:
   m_ObjectHideFlags: 0
