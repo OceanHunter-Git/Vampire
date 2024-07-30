@@ -106,5 +106,7 @@ public class ExperienceLevelSystem : MonoBehaviour
                 UIController.instance.levelUpButtons[i].gameObject.SetActive(false);
             }
         }
+
+        PlayerStatsController.instance.UpgradeDisplay();
     }
 }

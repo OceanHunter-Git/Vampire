@@ -23,4 +23,9 @@ public class CoinController : MonoBehaviour
         coinCounter += coinToAdd;
         UIController.instance.UpdateCoin();
     }
+
+    public void SpendCoin(int coinToSpend)
+    {
+        coinCounter -= coinToSpend;
+    }
 }

@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour
     public Slider expSlider;
     public TMP_Text expText;
     public TMP_Text coinText;
+
+    public PlayerStatsUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickUpRangeUpgradeDisplay, maxWeaponUpgradeDisplay;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,5 +48,26 @@ public class UIController : MonoBehaviour
     {
         UIController.instance.levelUpPanel.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void PurchaseMoveSpeed()
+    {
+        PlayerStatsController.instance.PurchaseMoveSpeed();
+        SkipUpgrade();
+    }
+    public void PurchaseHealth()
+    {
+        PlayerStatsController.instance.PurchaseHealth();
+        SkipUpgrade();
+    }
+    public void PurchasePickUpRange()
+    {
+        PlayerStatsController.instance.PurchasePickUpRange();
+        SkipUpgrade();
+    }
+    public void PurchaseMaxWeapon()
+    {
+        PlayerStatsController.instance.PurchaseMaxWeapon();
+        SkipUpgrade();
     }
 }
