@@ -7,6 +7,7 @@ public class PlayerHealthController : MonoBehaviour
 {
     public static PlayerHealthController instance;
 
+    public GameObject deathEffect;
     private void Awake()
     {
         instance = this;
@@ -35,6 +36,10 @@ public class PlayerHealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
+
+            LevelManager.instance.EndLevel();
+
+            Instantiate(deathEffect, transform.position, transform.rotation);
         }
         healthSlider.value = currentHealth;
     }
