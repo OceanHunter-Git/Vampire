@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
     public GameObject levelEndScreen;
     public TMP_Text endTimeText;
     public string menuName;
+    public GameObject pauseScreen;
 
     public PlayerStatsUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickUpRangeUpgradeDisplay, maxWeaponUpgradeDisplay;
     // Start is called before the first frame update
@@ -34,7 +35,10 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            PauseUnpause();
+        }    
     }
     public void UpdateExp(int currentExp, int levelExp, int level)
     {
@@ -91,5 +95,22 @@ public class UIController : MonoBehaviour
     public void ReStart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void PauseUnpause()
+    {
+        if (pauseScreen.activeSelf == false)
+        {
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            pauseScreen.SetActive(false);
+            if (levelUpPanel.activeSelf == false)
+            {
+            Time.timeScale = 1;
+            }
+        }
     }
 }
