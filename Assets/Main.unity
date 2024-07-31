@@ -29174,6 +29174,7 @@ MonoBehaviour:
   timeText: {fileID: 1218689543}
   levelEndScreen: {fileID: 1490894065}
   endTimeText: {fileID: 1368774104}
+  menuName: MainMenu
   moveSpeedUpgradeDisplay: {fileID: 947340408}
   healthUpgradeDisplay: {fileID: 1412031452}
   pickUpRangeUpgradeDisplay: {fileID: 833618499}

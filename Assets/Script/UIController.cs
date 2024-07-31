@@ -22,6 +22,7 @@ public class UIController : MonoBehaviour
     public TMP_Text timeText;
     public GameObject levelEndScreen;
     public TMP_Text endTimeText;
+    public string menuName;
 
     public PlayerStatsUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickUpRangeUpgradeDisplay, maxWeaponUpgradeDisplay;
     // Start is called before the first frame update
@@ -84,7 +85,7 @@ public class UIController : MonoBehaviour
 
     public void ReturnToMenu()
     {
-
+        SceneManager.LoadScene(menuName);
     }
 
     public void ReStart()
