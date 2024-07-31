@@ -90,11 +90,13 @@ public class UIController : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(menuName);
+        Time.timeScale = 1;
     }
 
     public void ReStart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 
     public void PauseUnpause()
