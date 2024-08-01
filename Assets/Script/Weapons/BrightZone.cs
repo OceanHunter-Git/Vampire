@@ -39,6 +39,7 @@ public class BrightZone : Weapon
             spawnCountDown = spawnWaitTime;
 
             Instantiate(enmeyDamage, enmeyDamage.transform.position, Quaternion.identity, transform).gameObject.SetActive(true);
+            SFXManager.instance.PlaySFX(10);
         }
 
         if (statsUpdated)

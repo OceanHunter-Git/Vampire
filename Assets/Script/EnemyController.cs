@@ -73,12 +73,17 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             ExperienceLevelSystem.instance.SpawnExp(transform.position, expValue);
+            SFXManager.instance.PlaySFX(0);
 
             if (UnityEngine.Random.Range(0f, 1f) < dropCoinRate)
             {
                 CoinController.instance.SpawnCoin(transform.position, coinValue);
 
             }
+        }
+        else
+        {
+            SFXManager.instance.PlaySFX(1);
         }
         DamageNumberController.instance.SpawnDamage(damageToTake, transform.position);
         

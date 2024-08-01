@@ -26,8 +26,9 @@ public class ThrowWeapon : Weapon
             for (int i = 0; i < stats[weaponLevel].amount; i++)
             {
                 Instantiate(damager, damager.transform.position, damager.transform.rotation).gameObject.SetActive(true);
+                
             }
-            
+            SFXManager.instance.PlaySFX(4);
         }
         
         if (statsUpdated == true)

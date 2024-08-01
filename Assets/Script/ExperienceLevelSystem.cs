@@ -40,6 +40,7 @@ public class ExperienceLevelSystem : MonoBehaviour
             LevelUp();
         }
         UIController.instance.UpdateExp(currentExperience, level[currentLevel], currentLevel);
+        SFXManager.instance.PlaySFX(2);
     }
 
     public void SpawnExp (Vector3 Location, int expAmount)
