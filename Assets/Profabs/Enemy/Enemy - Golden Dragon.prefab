@@ -115,7 +115,7 @@ MonoBehaviour:
   damage: 15
   hitWaitTime: 1
   health: 35
-  expValue: 30
+  expValue: 20
   coinValue: 30
   dropCoinRate: 1
 --- !u!114 &6932141792728519707
